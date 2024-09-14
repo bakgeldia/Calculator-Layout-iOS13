@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  temp.swift
 //  Calculator Layout iOS13
 //
-//  Created by Angela Yu on 01/07/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
+//  Created by Bakgeldi Alkhabay on 14.09.2024.
+//  Copyright © 2024 The App Brewery. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class temp: UIViewController {
 
     private let topView = UIView()
     private let label = UILabel()
@@ -51,11 +51,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
         setupTopView()
         setupThreeButton()
         setupOperationButtons()
         setupNumberButtons()
-        setupMainStackViews()
+        //setupMainStackViews()
     }
     
     func setupTopView() {
@@ -79,36 +81,60 @@ class ViewController: UIViewController {
             label.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             label.leadingAnchor.constraint(lessThanOrEqualTo: topView.leadingAnchor, constant: 500)
+            
         ])
+        
     }
     
     func setupThreeButton() {
+        leftStackView.axis = .vertical
+        threeButtonStackView.spacing = 0
+        threeButtonStackView.alignment = .fill
+        threeButtonStackView.distribution = .fillEqually
+        threeButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(threeButtonStackView)
+        
         threeButtonStackView.axis = .horizontal
         threeButtonStackView.spacing = 0
         threeButtonStackView.alignment = .fill
         threeButtonStackView.distribution = .fillEqually
         threeButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(threeButtonStackView)
         
         acButton.setTitle("AC", for: .normal)
-        acButton.backgroundColor = .gray
+        acButton.titleLabel?.textColor = .white
         acButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        acButton.backgroundColor = .gray
         acButton.layer.borderWidth = 1
         acButton.layer.borderColor = UIColor.black.cgColor
+        acButton.translatesAutoresizingMaskIntoConstraints = false
         threeButtonStackView.addArrangedSubview(acButton)
         
         signButton.setTitle("+/-", for: .normal)
-        signButton.backgroundColor = .gray
+        signButton.titleLabel?.textColor = .white
         signButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        signButton.backgroundColor = .gray
         signButton.layer.borderWidth = 1
         signButton.layer.borderColor = UIColor.black.cgColor
+        signButton.translatesAutoresizingMaskIntoConstraints = false
         threeButtonStackView.addArrangedSubview(signButton)
         
         percentButton.setTitle("%", for: .normal)
-        percentButton.backgroundColor = .gray
+        percentButton.titleLabel?.textColor = .white
         percentButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        percentButton.backgroundColor = .gray
         percentButton.layer.borderWidth = 1
         percentButton.layer.borderColor = UIColor.black.cgColor
+        percentButton.translatesAutoresizingMaskIntoConstraints = false
         threeButtonStackView.addArrangedSubview(percentButton)
+        
+        NSLayoutConstraint.activate([
+            threeButtonStackView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            threeButtonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            threeButtonStackView.heightAnchor.constraint(equalToConstant: 128),
+            threeButtonStackView.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
     }
     
     func setupOperationButtons() {
@@ -117,51 +143,75 @@ class ViewController: UIViewController {
         operationsStackView.alignment = .fill
         operationsStackView.distribution = .fillEqually
         operationsStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(operationsStackView)
         
         divideButton.setTitle("/", for: .normal)
-        divideButton.backgroundColor = .orange
+        divideButton.titleLabel?.textColor = .white
         divideButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        divideButton.backgroundColor = .orange
         divideButton.layer.borderWidth = 1
         divideButton.layer.borderColor = UIColor.black.cgColor
+        divideButton.translatesAutoresizingMaskIntoConstraints = false
         operationsStackView.addArrangedSubview(divideButton)
         
-        multiplyButton.setTitle("*", for: .normal)
-        multiplyButton.backgroundColor = .orange
+        multiplyButton.setTitle("/", for: .normal)
+        multiplyButton.titleLabel?.textColor = .white
         multiplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        multiplyButton.backgroundColor = .orange
         multiplyButton.layer.borderWidth = 1
         multiplyButton.layer.borderColor = UIColor.black.cgColor
+        multiplyButton.translatesAutoresizingMaskIntoConstraints = false
         operationsStackView.addArrangedSubview(multiplyButton)
         
         minusButton.setTitle("-", for: .normal)
-        minusButton.backgroundColor = .orange
+        minusButton.titleLabel?.textColor = .white
         minusButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        minusButton.backgroundColor = .orange
         minusButton.layer.borderWidth = 1
         minusButton.layer.borderColor = UIColor.black.cgColor
+        minusButton.translatesAutoresizingMaskIntoConstraints = false
         operationsStackView.addArrangedSubview(minusButton)
         
-        plusButton.setTitle("+", for: .normal)
-        plusButton.backgroundColor = .orange
+        plusButton.setTitle("-", for: .normal)
+        plusButton.titleLabel?.textColor = .white
         plusButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        plusButton.backgroundColor = .orange
         plusButton.layer.borderWidth = 1
         plusButton.layer.borderColor = UIColor.black.cgColor
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
         operationsStackView.addArrangedSubview(plusButton)
         
         equalButton.setTitle("=", for: .normal)
-        equalButton.backgroundColor = .orange
+        equalButton.titleLabel?.textColor = .white
         equalButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        equalButton.backgroundColor = .orange
         equalButton.layer.borderWidth = 1
         equalButton.layer.borderColor = UIColor.black.cgColor
+        equalButton.translatesAutoresizingMaskIntoConstraints = false
         operationsStackView.addArrangedSubview(equalButton)
+        
+        
+        NSLayoutConstraint.activate([
+            operationsStackView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            operationsStackView.leadingAnchor.constraint(equalTo: threeButtonStackView.trailingAnchor),
+            operationsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            operationsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     func setupNumberButtons() {
         numbersStackView.axis = .vertical
         numbersStackView.spacing = 0
         numbersStackView.alignment = .fill
+        numbersStackView.backgroundColor = .black
         numbersStackView.distribution = .fillEqually
         numbersStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(numbersStackView)
         
         numsStackViewFour.axis = .horizontal
+        numsStackViewFour.spacing = 0
+        numsStackViewFour.alignment = .fill
+        numsStackViewFour.backgroundColor = .white
         numsStackViewFour.distribution = .fillEqually
         numbersStackView.addArrangedSubview(numsStackViewFour)
         
@@ -193,6 +243,9 @@ class ViewController: UIViewController {
         numsStackViewFour.addArrangedSubview(nineButton)
         
         numsStackViewThree.axis = .horizontal
+        numsStackViewThree.spacing = 0
+        numsStackViewThree.alignment = .fill
+        numsStackViewThree.backgroundColor = .white
         numsStackViewThree.distribution = .fillEqually
         numbersStackView.addArrangedSubview(numsStackViewThree)
         
@@ -224,6 +277,9 @@ class ViewController: UIViewController {
         numsStackViewThree.addArrangedSubview(sixButton)
         
         numsStackViewTwo.axis = .horizontal
+        numsStackViewTwo.spacing = 0
+        numsStackViewTwo.alignment = .fill
+        numsStackViewTwo.backgroundColor = .white
         numsStackViewTwo.distribution = .fillEqually
         numbersStackView.addArrangedSubview(numsStackViewTwo)
         
@@ -255,6 +311,9 @@ class ViewController: UIViewController {
         numsStackViewTwo.addArrangedSubview(threeButton)
         
         numsStackViewOne.axis = .horizontal
+        numsStackViewOne.spacing = 0
+        numsStackViewOne.alignment = .fill
+        numsStackViewOne.backgroundColor = .white
         numsStackViewOne.distribution = .fillProportionally
         numbersStackView.addArrangedSubview(numsStackViewOne)
         
@@ -276,41 +335,18 @@ class ViewController: UIViewController {
         dotButton.translatesAutoresizingMaskIntoConstraints = false
         numsStackViewOne.addArrangedSubview(dotButton)
         
-        zeroButton.widthAnchor.constraint(equalTo: dotButton.widthAnchor, multiplier: 2).isActive = true
-    }
-    
-    func setupMainStackViews() {
-        // Настройка leftStackView
-        leftStackView.axis = .vertical
-        leftStackView.translatesAutoresizingMaskIntoConstraints = false
-        leftStackView.addArrangedSubview(threeButtonStackView)
-        leftStackView.addArrangedSubview(numbersStackView)
         
-        // Настройка mainStackView
-        mainStackView.axis = .horizontal
-        mainStackView.spacing = 0
-        mainStackView.alignment = .fill
-        mainStackView.distribution = .fill
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.addArrangedSubview(leftStackView)
-        mainStackView.addArrangedSubview(operationsStackView)
-        
-        view.addSubview(mainStackView)
-        
-        // Установка ограничений для пропорций
         NSLayoutConstraint.activate([
-            threeButtonStackView.heightAnchor.constraint(equalTo: numbersStackView.heightAnchor, multiplier: 0.25),
-            leftStackView.widthAnchor.constraint(equalTo: operationsStackView.widthAnchor, multiplier: 3),
+            numbersStackView.topAnchor.constraint(equalTo: threeButtonStackView.bottomAnchor),
+            numbersStackView.trailingAnchor.constraint(equalTo: operationsStackView.leadingAnchor),
+            numbersStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            numbersStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            mainStackView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            numsStackViewFour.topAnchor.constraint(equalTo: numbersStackView.topAnchor),
+            numsStackViewFour.leadingAnchor.constraint(equalTo: numbersStackView.leadingAnchor),
+            numsStackViewFour.trailingAnchor.constraint(equalTo: numbersStackView.trailingAnchor),
+            
+            zeroButton.widthAnchor.constraint(equalTo: dotButton.widthAnchor, multiplier: 2),
         ])
     }
-}
-
-
-#Preview() {
-    ViewController()
 }
